@@ -41,7 +41,7 @@ func main() {
 		for _, url := range urls {
 			if account == url.Account {
 				_, curr, _, _ := gauth.Codes(url)
-				fmt.Fprintf(os.Stdout, "%s", curr)
+				fmt.Fprintf(os.Stdout, "%s\n", curr)
 			}
 		}
 
