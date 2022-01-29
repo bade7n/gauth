@@ -1,11 +1,11 @@
-# Maintainer: pcarrier
+# Maintainer: bade7n
 
 pkgname=gauth
 pkgver=1.0
 pkgrel=1
 pkgdesc="Local laptop/desktop Google Authenticator written in go"
 arch=('x86_64' 'i686')
-url="https://github.com/pcarrier/gauth"
+url="https://github.com/bade7n/gauth"
 license=('MIT')
 depends=('go')
 makedepends=('mercurial')
