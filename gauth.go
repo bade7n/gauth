@@ -36,17 +36,30 @@ func main() {
 
 	_, progress := gauth.IndexNow() // TODO: do this per-code
 
-	tw := tabwriter.NewWriter(os.Stdout, 0, 8, 1, ' ', 0)
-	fmt.Fprintln(tw, "\tprev\tcurr\tnext")
-	for _, url := range urls {
-		prev, curr, next, err := gauth.Codes(url)
-		if err != nil {
-			log.Fatalf("Generating codes for %q: %v", url.Account, err)
+	if len(os.Args) > 1 {
+		account := os.Args[1]
+		for _, url := range urls {
+			if account == url.Account {
+				_, curr, _, _ := gauth.Codes(url)
+				fmt.Fprintf(os.Stdout, "%s", curr)
+			}
 		}
-		fmt.Fprintf(tw, "%s\t%s\t%s\t%s\n", url.Account, prev, curr, next)
+
+	} else {
+		tw := tabwriter.NewWriter(os.Stdout, 0, 8, 1, ' ', 0)
+		fmt.Fprintln(tw, "\tprev\tcurr\tnext")
+		for _, url := range urls {
+			prev, curr, next, err := gauth.Codes(url)
+			if err != nil {
+				log.Fatalf("Generating codes for %q: %v", url.Account, err)
+			}
+			fmt.Fprintf(tw, "%s\t%s\t%s\t%s\n", url.Account, prev, curr, next)
+		}
+		tw.Flush()
+		fmt.Printf("[%-29s]\n", strings.Repeat("=", progress))
+
 	}
-	tw.Flush()
-	fmt.Printf("[%-29s]\n", strings.Repeat("=", progress))
+
 }
 
 func getPassword() ([]byte, error) {
