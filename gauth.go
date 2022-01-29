@@ -10,7 +10,7 @@ import (
 	"syscall"
 	"text/tabwriter"
 
-	"github.com/pcarrier/gauth/gauth"
+	"github.com/bade7n/gauth/gauth"
 	"golang.org/x/crypto/ssh/terminal"
 )
 

@@ -10,7 +10,7 @@ license=('MIT')
 depends=('go')
 makedepends=('mercurial')
 options=('!strip' '!emptydirs')
-_gourl=github.com/pcarrier/gauth
+_gourl=github.com/bade7n/gauth
 
 build() {
   GOPATH="$srcdir" go get -fix -v -x ${_gourl}/...
